@@ -10,11 +10,13 @@
 </head>
 
 <body>
-
+    <!-- Main section  -->
     <section class="sec">
+        <!-- Header section -->
         <header>
             <a href="#"><img src="./images/logo.png" alt="logo" class="logo"></a>
-            <ul>
+            <div class="toggleMenu" onclick="menuToggle();"></div>
+            <ul class="navigation" onclick="changeBgColor2();">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Products</a></li>
                 <li><a href="#">What's New</a></li>
@@ -22,43 +24,67 @@
                 <li><a href="#">Contact</a></li>
             </ul>
         </header>
+        <!-- //Header section -->
+
+        <!-- Contens section -->
         <div class="content">
             <div class="textBox">
                 <h2>That's What <br><span>I like</span></h2>
                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error veniam
                     doloremque laboriosam,molestiae totam optio reiciendis nobis est animi
-                    accusamus commodi suscipit quidem! Vel consequatur,ipsa perferendis
-                    natus sed ab?</p>
+                    accusamus commodi suscipit quidem natus sed ab?</p>
                 <a href="#">View All Products</a>
             </div>
+            <!-- Main Image  -->
             <div class="imgBox">
                 <img src="./images/pepsi001.png" alt="Pepsi" class="pepsi">
             </div>
         </div>
+        <!-- //Contens section -->
+
+
+        <!-- Product image(small) section  -->
         <ul class="thumb">
-            <li><img src="./images/pepsi001.png" onclick="imgSlider('./images/pepsi001.png');changeBgColor('#0062be')"
+            <li><img src="./images/pepsi001.png" onclick="imgSlider('./images/pepsi001.png');changeBgColor('#0062be');"
                     alt="Pepsi"></li>
-            <li><img src="./images/pepsi002.png" onclick="imgSlider('./images/pepsi002.png');changeBgColor('#e60c2c')"
+            <li><img src="./images/pepsi002.png" onclick="imgSlider('./images/pepsi002.png');changeBgColor('#e60c2c');"
                     alt="Pepsi"></li>
-            <li><img src="./images/pepsi003.png" onclick="imgSlider('./images/pepsi003.png');changeBgColor('#1e1e1e')"
+            <li><img src="./images/pepsi003.png" onclick="imgSlider('./images/pepsi003.png');changeBgColor('#1e1e1e');"
                     alt="Pepsi"></li>
         </ul>
+        <!-- //Product image(small) section  -->
+
+
+        <!-- Social media icons section  -->
         <ul class="sci">
             <li><a href="#"><img src="./images/facebook.png" alt=""></a></li>
             <li><a href="#"><img src="./images/twitter.png" alt=""></a></li>
             <li><a href="#"><img src="./images/instagram.png" alt=""></a></li>
         </ul>
+        <!-- //Social media icons section  -->
     </section>
+    <!-- //Main section  -->
 
+    
+    <!-- Javascript -->
     <script type="text/javascript">
+        /** function for changing the on clicking small ones **/
         function imgSlider(img) {
-            console.log(img);
+            // console.log(img);
             document.querySelector('.pepsi').src = img;
         }
+        /** function for changing the background color according to image **/
         function changeBgColor(clr) {
-            console.log(clr);
+            // console.log(clr);
             const section = document.querySelector('.sec');
             section.style.background = clr;
+        }
+        /** function for toggling menu from screen size of 991px **/
+        function menuToggle() {
+            const toggleMenu = document.querySelector('.toggleMenu');
+            const navigation = document.querySelector('.navigation');
+            toggleMenu.classList.toggle('active');
+            navigation.classList.toggle('active');
         }
     </script>
 
