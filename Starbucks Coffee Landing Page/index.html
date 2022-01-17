@@ -11,6 +11,19 @@
 
 <body>
     <section>
+        <header class="header">
+            <a href="./index.html"><img src="./images/logo.png" alt="logo" class="logo"></a>
+            <div class="toggleMenu" tabindex="0" role="button" aria-label="Toggle menu"></div>
+            <nav class="navbar">
+                <ul>
+                    <div id="marker" aria-hidden="true"></div>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Menu</a></li>
+                    <li><a href="#">What's New</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
         <div class="circle"></div>
         <div class="content">
             <div class="textBox">
@@ -39,6 +52,11 @@
     </section>
 
     <script type="text/javascript">
+
+        const validKeys = new Set;
+        validKeys.add('Enter');
+        validKeys.add('Space');
+        
         function imgSlider(img) {
             document.querySelector('.starbucks').src = img;
         }
@@ -46,6 +64,97 @@
             const circle = document.querySelector('.circle');
             circle.style.background = clr;
         }
+        function setPositionNavMarker(e) {
+            const marker = document.querySelector('.navbar #marker');
+            console.log(marker)
+            const elementOffsetWidth = e.target.offsetWidth;
+            console.log(elementOffsetWidth)
+            const elementOffsetLeft = e.target.offsetLeft;
+            console.log(elementOffsetLeft)
+
+            marker.style.width = elementOffsetWidth + 'px';
+            marker.style.left = elementOffsetLeft + 'px';
+            if (e.type === 'mouseenter') {
+                document.activeElement.blur();
+            }
+        }
+        function toggleMenu(e) {
+            if (e.type !== 'click' && !isKeyValid(e.code)) {
+                return false;
+            }
+            const hamburgerMenu = document.querySelector('.toggleMenu');
+            const navigation = document.querySelector('.navbar');
+
+            hamburgerMenu.classList.toggle('active');
+            navigation.classList.toggle('active');
+            hamburgerMenu.classList.add('rotate');
+            setTimeout(() => {
+                hamburgerMenu.classList.remove('rotate');
+            }, 1000)
+            toggleAnchorMenuEvent();
+            e.target.blur();
+        }
+        /**
+        function toggleAnchorMenuEvent() {
+            const hamburgerMenu = document.querySelector('.toggleMenu');
+            const navLinks = document.querySelectorAll('.navbar a');
+            const isMenuToggled = hamburgerMenu.classList.contains('toggleMenu');
+            for (let i = 0; i < navLinks.length; i++) {
+                const navLink = navLinks[i];
+                if (isMenuToggled) {
+                    navLink.addEventListener('click', toggleMenu);
+                    navLink.addEventListener('keydown', (event) => {
+                        preventDefaultBehavior(event, event.code);
+                        toggleMenu(event);
+                    });
+                }
+                else {
+                    navLink.removeEventListener('click', toggleMenu);
+                    navLink.removeEventListener('keydown', (event) => {
+                        preventDefaultBehavior(event, event.code);
+                        toggleMenu(event);
+                    });
+                }
+            }
+            return;
+        }
+        **/
+
+        function isKeyValid(key) {
+            return validkeys.has(key);
+        }
+
+        function preventDefaultBehavior(event, key) {
+            const nodeName = event.target.nodeName;
+
+            if (nodeName === "A" && key === "Space") {
+                event.preventDefault();
+            }
+            else if (nodeName !== "BUTTON" && key === "Space") {
+                event.preventDefault();
+            }
+            else if (nodeName !== "BUTTON" && key === "Enter") {
+                event.preventDefault();
+            }
+            return;
+        }
+
+        function addEventListeners() {
+            const hamburgerMenu = document.querySelector('.toggleMenu');
+            const navLinks = document.querySelectorAll('.navbar a');
+
+            hamburgerMenu.addEventListener('click', toggleMenu);
+            hamburgerMenu.addEventListener('keydown', (event) => {
+                preventDefaultBehavior(event, event.code);
+                toggleMenu(event);
+            });
+            for (let i = 0; i < navLinks.length; i++) {
+                const navLink = navLinks[i];
+                navLink.addEventListener('focus', setPositionNavMarker);
+                navLink.addEventListener('mouseenter', setPositionNavMarker);
+            }
+        }
+        addEventListeners();
     </script>
 
 </body>
