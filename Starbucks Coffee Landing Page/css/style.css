@@ -187,15 +187,15 @@ section {
 
 @media (max-width: 991px) {
     section {
-        padding: 40px;
+        padding: 20px 20px 120px;
     }
 
     .header {
-        padding: 20px 40px;
+        padding: 20px 20px;
     }
 
     .logo {
-        max-width: 120px;
+        max-width: 60px;
     }
 
     .navbar {
@@ -212,7 +212,8 @@ section {
         opacity: 0;
         transition: all 0.7s ease;
     }
-    .navbar #marker{
+
+    .navbar #marker {
         visibility: hidden;
     }
 
@@ -220,12 +221,11 @@ section {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        transition: 0.2s;
     }
 
     .navbar a {
         color: #333;
-        font-size: 2em;
+        font-size: 1.5em;
         margin: 10px 0;
     }
 
@@ -239,6 +239,7 @@ section {
     }
 
     .toggleMenu {
+        position: relative;
         visibility: visible;
         opacity: 1;
         width: 40px;
@@ -257,12 +258,13 @@ section {
     }
 
     .toggleMenu.active {
+        position: fixed;
+        right: 21px;
         background: url(../images/x.svg);
         background-position: center;
         background-size: 30px;
         background-repeat: no-repeat;
         cursor: pointer;
-        filter: invert(1);
     }
 
     .rotate {
@@ -271,9 +273,52 @@ section {
     }
 
     .navbar.active {
+        position: fixed;
         top: 0;
+        width: 100%;
+        height: 100%;
         right: 0;
         opacity: 1;
+        background: #fff;
         transition: all 0.7s ease;
+    }
+
+    .content {
+        flex-direction: column;
+        margin-top: 100px;
+    }
+
+    .content .textBox h2 {
+        font-size: 2.5em;
+        margin-bottom: 15px;
+    }
+
+    .content .textBox {
+        max-width: 100%;
+    }
+
+    .content .imgBox {
+        max-width: 100%;
+        justify-content: center;
+    }
+
+    .content .imgBox img {
+        max-width: 300px;
+    }
+
+    .thumb li img {
+        max-width: 40px;
+    }
+
+    .circle {
+        clip-path: circle(400px at center bottom);
+    }
+
+    .sci {
+        background: #017143;
+        right: 0;
+        width: 50px;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
     }
 }
